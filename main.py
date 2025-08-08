@@ -19,7 +19,8 @@ class Game:
     def mainloop(self):
         while True:
             resp = int(input('>>> '))
-                
+
+            # Calcular e criar posição do jogador
             break_ = False
             b = False
             for n in self.local:
@@ -32,7 +33,9 @@ class Game:
                     else:
                         print(f'Posição {resp} já foi usada...Tente novamente')
                         b = True
-                
+
+            # Fim de jogo
+            # Como o player sempre vai dá o ultimo movimento, o fim de jogo vem primeiro que o bot 
             if len(self.game_pos) == 9:
                 print('\n\nFIM DE JOGO!')
                 vitorias = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]]
@@ -52,7 +55,8 @@ class Game:
                 self.game_pos = []
                 self.mainloop()
                 break
-                
+
+            # Calcular e criar posição do bot
             break_ = b      
             bot = randint(1, 9)
             while True:
@@ -71,7 +75,7 @@ class Game:
                         bot = randint(1, 9)
                         
                   
-
+            # Aparecer o jogo no terminal
             format = ''
             for i in range(0, 9, 3):  
                 el1 = el2 = el3 = ' '
@@ -93,7 +97,8 @@ class Game:
                     format += "---|---|---\n"
 
             print(format)
-                
+
+            # Calcular a vitoria do jogo
             vitorias = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]]
                 
             for _ in vitorias:
@@ -118,5 +123,6 @@ class Game:
                     
 
 if __name__ == '__main__':
-    game = Game(player='1', bot='2')
+    game = Game(player='X', bot='O') # Qualquer caracteres 
+
     game.mainloop()
